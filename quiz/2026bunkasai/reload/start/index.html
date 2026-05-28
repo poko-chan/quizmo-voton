@@ -3,32 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- 5秒後に自動遷移（遷移先のURLは環境に合わせて変更してください） -->
+<meta http-equiv="refresh" content="5;url=quiz_main.html">
 <title>リダイレクト中</title>
-<style>
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: sans-serif;
-  }
-  .loading::after {
-    content: "";
-    animation: dots 1.5s steps(6) infinite;
-  }
-  @keyframes dots {
-    0%   { content: ""; }
-    20%  { content: "."; }
-    40%  { content: ".."; }
-    60%  { content: "..."; }
-    80%  { content: "...."; }
-    100% { content: "....."; }
-  }
-</style>
+<!-- 指定されたパスでCSSを読み込み -->
+<link rel="stylesheet" href="resources/css/quiz/2026bunkasai/reload/start/index_style.css">
 </head>
 <body>
-  <h2>読み込み中<span class="loading"></span></h2>
+  <div class="redirect-wrapper">
+    <div class="loader-container">
+      
+      <!-- 浮遊する5つのネオンドット -->
+      <div class="floating-dots">
+        <span class="dot" style="--i:1"></span>
+        <span class="dot" style="--i:2"></span>
+        <span class="dot" style="--i:3"></span>
+        <span class="dot" style="--i:4"></span>
+        <span class="dot" style="--i:5"></span>
+      </div>
+      
+      <!-- 中央の光のオーラ -->
+      <div class="glow-bg"></div>
+      
+      <!-- クイズ開始を期待させるテキスト -->
+      <div class="text-glow">STARTING QUIZ</div>
+    </div>
+  </div>
 </body>
 </html>

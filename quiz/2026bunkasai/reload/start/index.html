@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- 5秒後に自動遷移（遷移先のURLは環境に合わせて変更してください） -->
-<meta http-equiv="refresh" content="5;url=quiz_main.html">
+<!-- 5秒後に文化祭クイズのトップへ自動遷移 -->
+<meta http-equiv="refresh" content="5;url=https://quizmo-voton.vercel.app/quiz/2026bunkasai/">
 <title>リダイレクト中</title>
 <!-- 指定されたパスでCSSを読み込み -->
 <link rel="stylesheet" href="/resources/css/quiz/2026bunkasai/reload/start/index_style.css">
@@ -13,17 +13,10 @@
   <div class="redirect-wrapper">
     <div class="loader-container">
       
-      <!-- 浮遊する5つのネオンドット -->
-      <div class="floating-dots">
-        <span class="dot" style="--i:1"></span>
-        <span class="dot" style="--i:2"></span>
-        <span class="dot" style="--i:3"></span>
-        <span class="dot" style="--i:4"></span>
-        <span class="dot" style="--i:5"></span>
+      <!-- 指定されたドット浮遊エフェクトの構造 -->
+      <div class="stage">
+        <div class="dot-floating"></div>
       </div>
-      
-      <!-- 中央の光のオーラ -->
-      <div class="glow-bg"></div>
       
       <!-- クイズ開始を期待させるテキスト -->
       <div class="text-glow">STARTING QUIZ</div>

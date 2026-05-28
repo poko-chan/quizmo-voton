@@ -5,13 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script>
         const param = location.search;
-        console.log(param)
-        const url = ``
-        document.title = "";
+        const paramOBJ = Object.fromEntries(new URLSearchParams(param));
+        const target = params.url;
+        const url = decodeURIComponent(target);
+        document.title = `${url}へジャンプします`;
+        window.onload = funcrion(){
+            windows.location.href = "url"
+        }
     </script>
     <title>サイトへジャンプします</title>
 </head>
 <body>
-    
+    <p>ジャンプ中...</p>
 </body>
 </html>

@@ -1,7 +1,7 @@
 {
-  "name": "Quizmo by Voton",
+  "name": "Quizmo by voton",
   "short_name": "Quizmo",
-  "description": "スマホのホーム画面から使える便利なアプリです。",
+  "description": "Quizmoでみんなとつながろう！",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",

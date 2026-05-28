@@ -9,124 +9,97 @@ body {
   font-family: 'Arial', sans-serif;
 }
 
-.redirect-wrapper {
+/* ステージ全体のサイズ定義 */
+.stage {
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 300px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  animation: fadeOutScreen 5s forwards;
 }
 
-/* ドットが画面全体を飛び回るように修正 */
-.floating-dots {
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-}
-
-/* 浮遊するドットの共通設定（サイズを少し大きく、光を強く） */
-.dot {
-  position: absolute;
+/* メインのフローティングドット（1〜3個目を1つの要素と擬似要素で表現） */
+.dot-floating {
+  position: relative;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  animation: float-around infinite ease-in-out alternate;
-}
-
-/* 1〜5個のドットを全画面に分散配置 */
-.dot:nth-child(1) {
-  width: 40px; height: 40px;
-  left: 15%; top: 20%;
   background: #00f3ff;
   box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
-  animation-duration: 6s;
-  animation-delay: -1s;
+  animation: float-one 6s ease-in-out infinite alternate;
 }
-.dot:nth-child(2) {
-  width: 25px; height: 25px;
-  left: 75%; top: 15%;
+
+/* 2個目のドット */
+.dot-floating::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
   background: #ff007f;
   box-shadow: 0 0 20px #ff007f, 0 0 40px #ff007f;
-  animation-duration: 7s;
-  animation-delay: -3s;
+  animation: float-two 5s ease-in-out infinite alternate;
 }
-.dot:nth-child(3) {
-  width: 50px; height: 50px;
-  left: 30%; top: 65%;
+
+/* 3個目のドット */
+.dot-floating::after {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
   background: #7000ff;
   box-shadow: 0 0 25px #7000ff, 0 0 50px #7000ff;
   opacity: 0.8;
-  animation-duration: 9s;
-  animation-delay: -2s;
+  animation: float-three 8s ease-in-out infinite alternate;
 }
-.dot:nth-child(4) {
-  width: 30px; height: 30px;
-  left: 80%; top: 70%;
+
+/* 4個目と5個目のドットは、ステージ背景の陰影・オーラを兼ねて作成 */
+.stage::before {
+  content: '';
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   background: #00ffaa;
   box-shadow: 0 0 20px #00ffaa, 0 0 40px #00ffaa;
-  animation-duration: 8s;
-  animation-delay: -4s;
+  animation: float-four 7s ease-in-out infinite alternate;
 }
-.dot:nth-child(5) {
-  width: 20px; height: 20px;
-  left: 50%; top: 10%;
+
+.stage::after {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
   background: #ffaa00;
   box-shadow: 0 0 15px #ffaa00, 0 0 30px #ffaa00;
-  animation-duration: 5s;
-  animation-delay: -0.5s;
+  animation: float-five 4.5s ease-in-out infinite alternate;
 }
 
-/* 中央の光のオーラ */
-.glow-bg {
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(0,243,255,0.15) 0%, rgba(0,0,0,0) 70%);
-  border-radius: 50%;
-  filter: blur(20px);
-  animation: pulseGlow 3s ease-in-out infinite alternate;
-  z-index: 1;
+/* 各ドット（1〜5）の異なる浮遊軌道アニメーション */
+@keyframes float-one {
+  0% { transform: translate(-40px, -60px) scale(1); }
+  100% { transform: translate(50px, 40px) scale(1.2); }
 }
 
-/* タイポグラフィ */
-.text-glow {
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 10px;
-  text-shadow: 0 0 15px rgba(255,255,255,0.9), 0 0 30px #00f3ff;
-  z-index: 10;
-  animation: textPulse 2s ease-in-out infinite alternate;
+@keyframes float-two {
+  0% { transform: translate(80px, -30px) scale(1.1); }
+  100% { transform: translate(-70px, 60px) scale(0.9); }
 }
 
-/* 大きく動く浮遊アニメーション */
-@keyframes float-around {
-  0% {
-    transform: translate(0, 0) scale(1);
-  }
-  50% {
-    transform: translate(40px, -60px) scale(1.2);
-  }
-  100% {
-    transform: translate(-40px, 40px) scale(0.8);
-  }
+@keyframes float-three {
+  0% { transform: translate(-90px, 50px) scale(0.8); }
+  100% { transform: translate(60px, -70px) scale(1.1); }
 }
 
-@keyframes pulseGlow {
-  0% { transform: scale(0.8); opacity: 0.5; }
-  100% { transform: scale(1.2); opacity: 1; }
+@keyframes float-four {
+  0% { transform: translate(30px, 80px) scale(0.9); }
+  100% { transform: translate(-60px, -50px) scale(1.2); }
 }
 
-@keyframes textPulse {
-  0% { opacity: 0.5; letter-spacing: 8px; }
-  100% { opacity: 1; letter-spacing: 12px; }
-}
-
-@keyframes fadeOutScreen {
-  0% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { opacity: 0; }
+@keyframes float-five {
+  0% { transform: translate(-10px, -90px) scale(1.2); }
+  100% { transform: translate(90px, 20px) scale(0.8); }
 }

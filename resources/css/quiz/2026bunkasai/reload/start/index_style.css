@@ -10,123 +10,121 @@ body {
 }
 
 .redirect-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   animation: fadeOutScreen 5s forwards;
 }
 
-.loader-container {
-  position: relative;
-  width: 300px;
-  height: 300px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* ドットが浮遊するエリア */
+/* ドットが画面全体を飛び回るように修正 */
 .floating-dots {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   top: 0;
   left: 0;
+  pointer-events: none;
 }
 
-/* 浮遊するドットの共通設定 */
+/* 浮遊するドットの共通設定（サイズを少し大きく、光を強く） */
 .dot {
   position: absolute;
   border-radius: 50%;
-  filter: drop-shadow(0 0 15px #00f3ff);
   animation: float-around infinite ease-in-out alternate;
 }
 
-/* 1〜5個のドットに異なるサイズ、位置、カラー、速度を割り当て */
+/* 1〜5個のドットを全画面に分散配置 */
 .dot:nth-child(1) {
-  width: 24px; height: 24px;
-  left: 20%; top: 30%;
+  width: 40px; height: 40px;
+  left: 15%; top: 20%;
   background: #00f3ff;
-  animation-duration: 4s;
-  animation-delay: -0.5s;
+  box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+  animation-duration: 6s;
+  animation-delay: -1s;
 }
 .dot:nth-child(2) {
-  width: 14px; height: 14px;
-  left: 70%; top: 20%;
+  width: 25px; height: 25px;
+  left: 75%; top: 15%;
   background: #ff007f;
-  box-shadow: 0 0 20px #ff007f;
-  animation-duration: 5.5s;
-  animation-delay: -1.2s;
+  box-shadow: 0 0 20px #ff007f, 0 0 40px #ff007f;
+  animation-duration: 7s;
+  animation-delay: -3s;
 }
 .dot:nth-child(3) {
-  width: 32px; height: 32px;
-  left: 40%; top: 60%;
+  width: 50px; height: 50px;
+  left: 30%; top: 65%;
   background: #7000ff;
-  box-shadow: 0 0 25px #7000ff;
+  box-shadow: 0 0 25px #7000ff, 0 0 50px #7000ff;
   opacity: 0.8;
-  animation-duration: 7s;
-}
-.dot:nth-child(4) {
-  width: 18px; height: 18px;
-  left: 15%; top: 70%;
-  background: #00ffaa;
-  box-shadow: 0 0 15px #00ffaa;
-  animation-duration: 4.8s;
+  animation-duration: 9s;
   animation-delay: -2s;
 }
+.dot:nth-child(4) {
+  width: 30px; height: 30px;
+  left: 80%; top: 70%;
+  background: #00ffaa;
+  box-shadow: 0 0 20px #00ffaa, 0 0 40px #00ffaa;
+  animation-duration: 8s;
+  animation-delay: -4s;
+}
 .dot:nth-child(5) {
-  width: 10px; height: 10px;
-  left: 80%; top: 65%;
+  width: 20px; height: 20px;
+  left: 50%; top: 10%;
   background: #ffaa00;
-  box-shadow: 0 0 10px #ffaa00;
-  animation-duration: 3.5s;
-  animation-delay: -0.8s;
+  box-shadow: 0 0 15px #ffaa00, 0 0 30px #ffaa00;
+  animation-duration: 5s;
+  animation-delay: -0.5s;
 }
 
-/* 中央の幻想的な光のモヤ */
+/* 中央の光のオーラ */
 .glow-bg {
   position: absolute;
-  width: 120px;
-  height: 120px;
-  background: radial-gradient(circle, rgba(0,243,255,0.2) 0%, rgba(0,0,0,0) 70%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0,243,255,0.15) 0%, rgba(0,0,0,0) 70%);
   border-radius: 50%;
-  filter: blur(10px);
+  filter: blur(20px);
   animation: pulseGlow 3s ease-in-out infinite alternate;
+  z-index: 1;
 }
 
 /* タイポグラフィ */
 .text-glow {
   color: #fff;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: bold;
-  letter-spacing: 8px;
-  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+  letter-spacing: 10px;
+  text-shadow: 0 0 15px rgba(255,255,255,0.9), 0 0 30px #00f3ff;
   z-index: 10;
   animation: textPulse 2s ease-in-out infinite alternate;
 }
 
-/* フローティング（浮遊）アニメーション */
+/* 大きく動く浮遊アニメーション */
 @keyframes float-around {
   0% {
     transform: translate(0, 0) scale(1);
   }
   50% {
-    transform: translate(25px, -35px) scale(1.1);
+    transform: translate(40px, -60px) scale(1.2);
   }
   100% {
-    transform: translate(-20px, 20px) scale(0.9);
+    transform: translate(-40px, 40px) scale(0.8);
   }
 }
 
 @keyframes pulseGlow {
   0% { transform: scale(0.8); opacity: 0.5; }
-  100% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(1.2); opacity: 1; }
 }
 
 @keyframes textPulse {
-  0% { opacity: 0.4; letter-spacing: 6px; }
-  100% { opacity: 1; letter-spacing: 10px; }
+  0% { opacity: 0.5; letter-spacing: 8px; }
+  100% { opacity: 1; letter-spacing: 12px; }
 }
 
-/* ページ遷移に合わせて画面を真っ暗にする */
 @keyframes fadeOutScreen {
   0% { opacity: 1; }
   90% { opacity: 1; }
